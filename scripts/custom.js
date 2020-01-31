@@ -32,15 +32,15 @@ function storeName() {
         //Om name inte är definierad
         } else {
             player = prompt("Vad trevligt att du är här! Vad heter du?");
-        
-            if(player){
-                localStorage.setItem("name", player);
-                $("#game-info").html("Välkommen " + player + "!");
-            }  
+            if(!player){
+                player = "Anonym";
+            }
+            localStorage.setItem("name", player);
+            $("#game-info").html("Välkommen " + player + "!");     
         }
     } 
     else {
-        player = "Gäst";
+        player = "Anonym";
         $("#game-info").html("Välkommen!");  //Webbläsaren stöder ej localStorage
     }
   }
@@ -146,6 +146,7 @@ $("#om-spelet").click(function(){
 });
 
 $("#clear-btn").click(function(){
+    $("#game-info").html("");
     if(localStorage.name){
         localStorage.removeItem("name");
     }
@@ -157,6 +158,10 @@ $("#clear-btn").click(function(){
     }
     playerScore = 0;
     gamesPlayed = 0;
+    
+    removeImages();
+    storeName();
+    storeScore();
 });
 
 
