@@ -95,6 +95,7 @@ $("#game-btn").click(function(){
     $("#clear-btn").hide();
     deck = createDeck();
     shuffleDeck(deck);
+    $("#card-btn span").text(`(${deck.length})`);
     //testDeck();
 });
 
@@ -104,7 +105,7 @@ $("#card-btn").click(function(){
     do{
         counter++;
         if(counter > 13){counter = 1;}
-    }while(correctlyPlaced[counter - 1]);
+    }while(correctlyPlaced[counter - 1]);//skip correctly placed
 
     let card = getNextCard();
     sound1.play();
@@ -117,11 +118,12 @@ $("#card-btn").click(function(){
         $.each(stacks[counter - 1], function(idx, item){
             deck.push(item);
         });
-        
+
     }
     else{
         stacks[counter - 1].push(card);
     }
+    $("#card-btn span").text(`(${deck.length})`); //Number of cards left
     if(checkResult()){
         winGame();   
     }
