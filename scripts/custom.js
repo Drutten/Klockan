@@ -6,7 +6,6 @@ let suits = ["Hearts","Clubs","Diamonds","Spades"],
 values = ["Ace", "King", "Queen", "Jack", "Ten", "Nine", "Eight", "Seven", "Six", "Five", "Four", "Three", "Two" ];
 //Game variables
 let playerScore = 0,
-player,
 gamesPlayed = 0,
 counter = 0,
 stacks = [[], [], [], [], [], [], [], [], [], [], [], [], []],
@@ -18,45 +17,21 @@ sound3 = new Audio("fanfar.mp3"),
 sound4 = new Audio("lose.mp3");
 
 
-storeName();
 storeScore();
 
 
-function storeName() {
-    //Kolla om webbläsaren stöder localStorage
-    if(typeof(Storage) !== "undefined") {
-        //Om name är definierad
-        if (localStorage.name) {
-            player = localStorage.name;
-            $("#game-info").html("Välkommen " + player + "!");
-        //Om name inte är definierad
-        } else {
-            player = prompt("Vad trevligt att du är här! Vad heter du?");
-            if(!player){
-                player = "Anonym";
-            }
-            localStorage.setItem("name", player);
-            $("#game-info").html("Välkommen " + player + "!");     
-        }
-    } 
-    else {
-        player = "Anonym";
-        $("#game-info").html("Välkommen!");  //Webbläsaren stöder ej localStorage
-    }
-  }
 
-
-  function storeScore() {
-    //Kolla om webbläsaren stöder localStorage
+function storeScore() {
+    //Check if browser supports localStorage
     if(typeof(Storage) !== "undefined") {
-        //Om score är definierad
+        //Check if score is defined
         if (localStorage.score) {
             playerScore = Number(localStorage.score);    
-        }
-        //Om score inte är definierad 
+        } 
         else {
             localStorage.setItem("score", 0);    
         }
+        //Check if numGames is defined
         if(localStorage.numGames){
             gamesPlayed = Number(localStorage.numGames);  
         }
@@ -64,21 +39,21 @@ function storeName() {
             localStorage.setItem("numGames", 0);   
         }
     } 
-  }
+}
 
-  function addScore(){
+function addScore(){
     playerScore++;
     if(typeof(Storage) !== "undefined"){
         localStorage.score = playerScore + "";
     }
-  }
+}
 
-  function addGame(){
+function addGame(){
     gamesPlayed++; 
     if(typeof(Storage) !== "undefined"){
         localStorage.numGames = gamesPlayed + "";
     }  
-  }
+}
 
 
 
@@ -86,7 +61,7 @@ function storeName() {
 //Start game
 $("#game-btn").click(function(){
     removeImages();
-    $("#game-info").html("Spelare: " + player + "<br>Antal vunna spel: " + playerScore +
+    $("#game-info").html("Antal vunna spel: " + playerScore +
     "<br>Totalt antal spel: " + gamesPlayed);
     fillCorrectlyPlaced();
     $("#game-btn").hide();
@@ -109,10 +84,10 @@ $("#card-btn").click(function(){
 
     let card = getNextCard();
     sound1.play();
-    $("#c" + counter).html("<img src=" + getCardImage(card) + ">");
+    $(`#c${counter}`).html("<img src=" + getCardImage(card) + ">");
     if(getCardNumericValue(card) == counter){
         sound2.play();
-        $("#c" + counter).addClass("shadow");
+        $(`#c${counter}`).addClass("shadow");
         correctlyPlaced[counter - 1] = true;
         
         $.each(stacks[counter - 1], function(idx, item){
@@ -149,9 +124,6 @@ $("#om-spelet").click(function(){
 
 $("#clear-btn").click(function(){
     $("#game-info").html("");
-    if(localStorage.name){
-        localStorage.removeItem("name");
-    }
     if(localStorage.score){
         localStorage.removeItem("score");
     }
@@ -162,7 +134,6 @@ $("#clear-btn").click(function(){
     gamesPlayed = 0;
     
     removeImages();
-    storeName();
     storeScore();
 });
 
@@ -246,7 +217,7 @@ function randomize(a, b) {
 
 
 function getNextCard(){
-    //shift returns the first element from an array and removes it from the array
+    //return the first element from the array and remove it from the array
     return deck.shift();
 }
 

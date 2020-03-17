@@ -7,7 +7,7 @@
     <title>Klockan</title>
     <link rel="shortcut icon" href="favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Amarante&display=swap" rel="stylesheet">
-    <link href="styles/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="styles/custom.css" rel="stylesheet">
 
 </head>
@@ -18,24 +18,23 @@
 <div class="container-fluid">
     
     <div class="row">
-        <div class="col-sm-4 text-col">
+        <div class="col-12 col-md-4 text-col">
             <h1 class="header-text">Klockan</h1>
-            <br>
+            
             <p id="game-info"></p>
             <br>
-            <button class="btn" id="game-btn">Nytt spel</button>
-            <button class="btn" id="card-btn">Lägg kort <span></span></button>
+            <button class="btn btn-sm btn-success" id="game-btn">Nytt spel</button>
+            <button class="btn btn-sm btn-success" id="card-btn">Lägg kort <span></span></button>
             <br>
-            <button class="btn" id="stop-btn">Avsluta</button>
+            <button class="btn btn-sm btn-success" id="stop-btn">Avsluta</button>
             <br>
+            <button class="btn btn-sm btn-success" id="om-spelet">Om spelet</button>
             <br>
-            <button class="btn" id="om-spelet">Om spelet</button>
-            <br>
-            <button class="btn" id="clear-btn">Radera framsteg</button>
+            <button class="btn btn-sm btn-success" id="clear-btn">Radera framsteg</button>
         </div>
 
 
-        <div class="col-sm-8 card-col">
+        <div class="col-12 col-md-8 card-col">
             <div id="clock" class="m-auto">
 
                 <div class="clockrow">
@@ -85,10 +84,12 @@
         </div>
     </footer>
 </div> <!--Slut container-->
-<!-- jQuery -->
-<script type="text/javascript" src="scripts/jquery.js"></script>
-<!-- Bootstrap Core JavaScript -->
-<script type="text/javascript" src="scripts/bootstrap.min.js"></script>
+
+<!-- jQuery och Bootstrap -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
 <!-- custom JS -->
 <script type="text/javascript" src="scripts/custom.js"></script>
 
