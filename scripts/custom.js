@@ -244,11 +244,6 @@ function createImage(imageString){
 }
 
 
-// //IMAGES
-// //returns the string name of image source
-// function getCardImage(card){
-//     return "cardImg/" + card.suit + card.value + ".png";  
-// }
 
 
 function getCardString(card){
