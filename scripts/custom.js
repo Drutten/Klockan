@@ -4,6 +4,9 @@
 //Card variables
 let suits = ["Hearts","Clubs","Diamonds","Spades"],
 values = ["Ace", "King", "Queen", "Jack", "Ten", "Nine", "Eight", "Seven", "Six", "Five", "Four", "Three", "Two" ];
+
+
+
 //Game variables
 let playerScore = 0,
 gamesPlayed = 0,
@@ -84,7 +87,7 @@ $("#card-btn").click(function(){
 
     let card = getNextCard();
     sound1.play();
-    $(`#c${counter}`).html("<img src=" + getCardImage(card) + ">");
+    $(`#c${counter}`).html(card.image);
     if(getCardNumericValue(card) == counter){
         sound2.play();
         $(`#c${counter}`).addClass("shadow");
@@ -196,6 +199,7 @@ function createDeck(){
                 value: values[valueIdx],
                 id: i   //for testing
             };
+            card.image = createImage(`cardImg/${card.suit}${card.value}.png`);
             deck.push(card);
             i++;
         }
@@ -227,10 +231,24 @@ function removeImages(){
     });   
 }
 
-//returns the string name of image source
-function getCardImage(card){
-    return "cardImg/" + card.suit + card.value + ".png";  
+
+function createImages(){
+    images.push()
 }
+
+//CREATE IMAGE
+function createImage(imageString){
+    let img = new Image();
+    img.src = imageString;
+    return img;
+}
+
+
+// //IMAGES
+// //returns the string name of image source
+// function getCardImage(card){
+//     return "cardImg/" + card.suit + card.value + ".png";  
+// }
 
 
 function getCardString(card){
@@ -277,6 +295,14 @@ function testDeck(){
         console.log(deck[i].id);
     }
 }
+
+
+
+
+
+
+
+
 
 
 
