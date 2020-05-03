@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&display=swap');
 
 * {
   box-sizing: border-box;
@@ -5,7 +6,7 @@
 body {
   padding: 20px;
   background-color: #477148;
-  font-family: 'Amarante', cursive;
+  font-family: 'Love Ya Like A Sister', cursive;
 }
 
 .card-col, .text-col {
@@ -36,8 +37,15 @@ img {
 #game-info {
   color: #fff;
   margin-left: 100px;
+  margin-top: 20px;
   font-size: 20px;
 }
+
+.button-group {
+  display: flex;
+}
+
+
 #clock {
   width: 700px;
 }
@@ -69,9 +77,11 @@ img {
 #c9 {
   margin-right: 180px;
 }
-
-button {
-  margin: 5px 10px 5px 100px;
+#om-spelet {
+  margin-left: 10px;
+}
+.button-group, #game-btn, #card-btn {
+  margin: 5px 0 5px 100px;
 }
 button:hover {
   background-color: rgb(156, 187, 162);
@@ -84,10 +94,14 @@ button:hover {
   height: 100%;
 }
 
+@media(min-width: 1200px){
+  .text-col {
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+  }
+}
 
-
-@media only screen and (max-width: 1000px){
-  .header-text, #game-info, button {
+@media only screen and (max-width: 1050px){
+  .header-text, #game-info, .button-group, #game-btn, #card-btn{
     margin-left: 20px;
   }
   
@@ -99,12 +113,14 @@ button:hover {
 }
 
 @media only screen and (max-width: 900px){
-  .header-text, #game-info {
+  .header-text {
     margin: 0 20px;
   }
-  button {
-    margin: 5px 20px;
+
+  #game-info {
+    margin: 20px;
   }
+  
   #clock {
     margin: 0 20px;
   }
@@ -133,6 +149,13 @@ button:hover {
 }
 
 @media only screen and (max-width: 767px){
+  .button-group {
+    margin: 10px 0 0;
+    justify-content: center;
+  }
+  #game-btn, #card-btn {
+    margin: 0;
+  }
   .card-col {
     margin-top: 15px;
     padding-top: 5px;
@@ -146,6 +169,8 @@ button:hover {
   }
   #game-info {
     font-size: 14px;
+    margin: 6px;
+    line-height: 1em;
   }
   #clock {
     margin: 15px 0 0 0;
@@ -175,7 +200,7 @@ button:hover {
 }
 
 
-@media only screen and (max-width: 350px){
+@media only screen and (max-width: 380px){
   .clockrow > div {
     width: 1.5em;
     height: 2.5em;

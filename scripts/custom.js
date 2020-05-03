@@ -27,7 +27,8 @@ storeScore();
 function storeScore() {
     //Check if browser supports localStorage
     if(typeof(Storage) !== "undefined") {
-        //Check if score is defined
+            
+        //Check if score is defined 
         if (localStorage.score) {
             playerScore = Number(localStorage.score);    
         } 
@@ -41,20 +42,21 @@ function storeScore() {
         else{
             localStorage.setItem("numGames", 0);   
         }
+    
     } 
 }
 
 function addScore(){
     playerScore++;
-    if(typeof(Storage) !== "undefined"){
-        localStorage.score = playerScore + "";
+    if(typeof(Storage) !== "undefined"){    
+        localStorage.score = playerScore + "";           
     }
 }
 
 function addGame(){
     gamesPlayed++; 
-    if(typeof(Storage) !== "undefined"){
-        localStorage.numGames = gamesPlayed + "";
+    if(typeof(Storage) !== "undefined"){   
+        localStorage.numGames = gamesPlayed + "";          
     }  
 }
 
@@ -73,7 +75,7 @@ $("#game-btn").click(function(){
     $("#clear-btn").hide();
     deck = createDeck();
     shuffleDeck(deck);
-    $("#card-btn span").text(`(${deck.length})`);
+    $("#card-btn span").text(""+deck.length);
     //testDeck();
 });
 
@@ -87,10 +89,10 @@ $("#card-btn").click(function(){
 
     let card = getNextCard();
     sound1.play();
-    $(`#c${counter}`).html(card.image);
+    $("#c"+counter).html(card.image);
     if(getCardNumericValue(card) == counter){
         sound2.play();
-        $(`#c${counter}`).addClass("shadow");
+        $("#c"+counter).addClass("shadow");
         correctlyPlaced[counter - 1] = true;
         
         $.each(stacks[counter - 1], function(idx, item){
@@ -101,7 +103,7 @@ $("#card-btn").click(function(){
     else{
         stacks[counter - 1].push(card);
     }
-    $("#card-btn span").text(`(${deck.length})`); //Number of cards left
+    $("#card-btn span").text(""+deck.length); //Number of cards left
     if(checkResult()){
         winGame();   
     }
@@ -199,7 +201,7 @@ function createDeck(){
                 value: values[valueIdx],
                 id: i   //for testing
             };
-            card.image = createImage(`cardImg/${card.suit}${card.value}.png`);
+            card.image = createImage("cardImg/"+card.suit +""+ card.value+".png");
             deck.push(card);
             i++;
         }
