@@ -36,8 +36,6 @@ Klockan/
 │   └── custom.css      # Modern CSS with variables and grid
 ├── scripts/
 │   └── custom.js       # Vanilla ES6+ JavaScript
-├── cardImg/            # Legacy card images (no longer used)
-├── omspelet.txt        # Game rules (Swedish)
 └── README.md           # This file
 ```
 
