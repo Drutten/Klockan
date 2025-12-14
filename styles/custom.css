@@ -1,228 +1,725 @@
 @import url('https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&display=swap');
 
+:root {
+  --primary-green: #477148;
+  --dark-green: #204521;
+  --light-green: #9cbb91;
+  --highlight: #e1f815;
+  --card-width: 2.5rem;
+  --card-height: 3.8rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+  --transition-speed: 0.3s;
+}
+
 * {
   box-sizing: border-box;
 }
+
 body {
-  padding: 20px;
-  background-color: #477148;
+  padding: 0;
+  background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
   font-family: 'Love Ya Like A Sister', cursive;
+  min-height: 100vh;
+  margin: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.container-fluid {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow: visible;
 }
 
 .card-col, .text-col {
-  padding: 50px 0 0 0;
-}
-
-img {
-  width: 100%;
-  height: 100%;
+  padding: 0;
 }
 
 .m-auto {
   margin-left: auto;
   margin-right: auto;
 }
+
 .center {
   text-align: center;
 }
+
 .shadow {
-  border: 3px solid rgb(225, 248, 21);
+  box-shadow: 
+    0 0 30px 10px rgba(16, 185, 129, 0.9),
+    0 0 50px 20px rgba(52, 211, 153, 0.7),
+    0 0 70px 30px rgba(110, 231, 183, 0.5),
+    inset 0 0 20px rgba(16, 185, 129, 0.3);
+  border: 3px solid rgba(16, 185, 129, 1) !important;
+  background: linear-gradient(135deg, 
+    rgba(16, 185, 129, 0.25), 
+    rgba(52, 211, 153, 0.15)) !important;
+  animation: popAndGlow 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards, 
+             gentlePulse 2s ease-in-out 0.6s infinite;
+}
+
+@keyframes popAndGlow {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.35) rotate(8deg);
+  }
+  65% {
+    transform: scale(1.05) rotate(-5deg);
+  }
+  85% {
+    transform: scale(1.15) rotate(2deg);
+  }
+  100% {
+    transform: scale(1.1) rotate(0deg);
+  }
+}
+
+@keyframes gentlePulse {
+  0%, 100% { 
+    transform: scale(1.1);
+    filter: brightness(1);
+  }
+  50% { 
+    transform: scale(1.15);
+    filter: brightness(1.1);
+  }
 }
 
 .header-text {
-  color: #FFF;
-  margin-left: 100px;
-  font-size: 50px;
+  color: #fff;
+  font-size: 1.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin: 0;
+  padding: 0.5rem;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
 }
+
+.container-fluid > .row:first-child {
+  flex-shrink: 0;
+}
+
+.container-fluid > .row:nth-child(2) {
+  flex: 1;
+  display: flex;
+  overflow: visible;
+  flex-direction: column;
+}
+
+.container-fluid > .row:nth-child(2) > .col-12 {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.container-fluid > .row:nth-child(2) > .col-12:last-child {
+  flex: 1;
+}
+
+.game-controls {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  background: rgba(32, 69, 33, 0.95);
+  backdrop-filter: blur(15px);
+  border-radius: 0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+  margin: 0;
+  z-index: 100;
+  transition: all 0.3s ease;
+  flex-wrap: wrap;
+}
+
+.game-controls:hover {
+  background: rgba(32, 69, 33, 0.98);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
 #game-info {
   color: #fff;
-  margin-left: 100px;
-  margin-top: 20px;
-  font-size: 20px;
+  font-size: 0.8rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  margin: 0;
+  line-height: 1.3;
+  text-align: center;
+  flex: 1 1 100%;
+  min-height: 1rem;
 }
 
-.button-group {
+#game-btn, #stop-btn {
+  margin: 0;
+  width: auto;
+  min-width: 100px;
+}
+
+#clear-btn {
+  margin: 0;
+  font-size: 0.8rem;
+  padding: 0.4rem 0.8rem;
+  opacity: 0.8;
+  width: auto;
+  min-width: 120px;
+}
+
+#clear-btn:hover {
+  opacity: 1;
+  background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.game-area {
+  width: 100%;
+  height: 100%;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.5rem;
+  overflow: auto;
+  position: relative;
 }
 
+.btn {
+  transition: all var(--transition-speed) ease;
+  font-family: 'Love Ya Like A Sister', cursive;
+  font-size: 0.85rem;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn:hover {
+  background-color: var(--light-green) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
 
 #clock {
-  width: 700px;
+  width: 500px !important;
+  max-width: 100% !important;
+  display: block !important;
+  gap: 0;
+  padding: 0.75rem;
+  flex-shrink: 0;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+  visibility: visible !important;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
+
+#card-deck-container {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  z-index: 200;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
 .clockrow {
   display: flex;
   justify-content: center;
+  gap: 0.35rem;
+  margin-bottom: 0.35rem;
 }
+
 .clockrow > div {
-  background-color: #204521;
-  width: 50px;
-  height: 75px;
+  background-color: var(--dark-green);
+  width: var(--card-width);
+  height: var(--card-height);
+  min-width: var(--card-width);
+  min-height: var(--card-height);
+  border-radius: 8px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  transition: all var(--transition-speed) ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
 }
-/*Card places*/
+
+.clockrow > div:hover {
+  background-color: rgba(32, 69, 33, 0.8);
+}
+
+/* Empty slot indicator */
+.clockrow > div:empty::before {
+  content: '';
+  position: absolute;
+  width: 70%;
+  height: 70%;
+  border: 2px dashed rgba(255, 255, 255, 0.5);
+  border-radius: 4px;
+}
+
+/* Playing Card Styles */
+.playing-card {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f8f8 100%);
+  border-radius: 6px;
+  border: 2px solid #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: transform var(--transition-speed) ease;
+  animation: cardDrop 0.4s ease-out;
+}
+
+@keyframes cardDrop {
+  0% {
+    transform: translateY(-20px) scale(0.9);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(5px) scale(1.05);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.playing-card:hover {
+  transform: scale(1.02);
+}
+
+.playing-card.red {
+  color: #dc143c;
+}
+
+.playing-card.black {
+  color: #000;
+}
+
+/* Highlight correctly placed cards */
+.shadow .playing-card {
+  background: linear-gradient(135deg, #fffef0 0%, #fffacd 100%);
+  border-color: var(--highlight);
+  font-weight: bold;
+}
+
+.playing-card .card-value {
+  font-size: 0.7rem;
+  font-weight: bold;
+  position: absolute;
+  top: 4px;
+  left: 6px;
+  font-family: Arial, sans-serif;
+}
+
+.playing-card .card-suit {
+  font-size: 1.8rem;
+}
+
+.playing-card .card-bottom {
+  font-size: 0.7rem;
+  font-weight: bold;
+  position: absolute;
+  bottom: 4px;
+  right: 6px;
+  transform: rotate(180deg);
+  font-family: Arial, sans-serif;
+}
+
+/* Card positions in clock */
+/* Card positions in clock */
 #c1, #c5 {
-  margin-left: 50px;
+  margin-left: 3.5rem;
 }
 #c2, #c4 {
-  margin-left: 125px;
+  margin-left: 8rem;
 }
 #c3 {
-  margin-left: 180px;
+  margin-left: 11.5rem;
 }
 #c7, #c11 {
-  margin-right: 50px;
+  margin-right: 3.5rem;
 }
 #c8, #c10 {
-  margin-right: 125px;
+  margin-right: 8rem;
 }
 #c9 {
-  margin-right: 180px;
+  margin-right: 11.5rem;
 }
+
 #om-spelet {
-  margin-left: 10px;
+  margin-left: var(--spacing-sm);
 }
+
 .button-group, #game-btn, #card-btn {
-  margin: 5px 0 5px 100px;
+  margin: var(--spacing-sm) 0 var(--spacing-sm) 6rem;
 }
-button:hover {
-  background-color: rgb(156, 187, 162);
-}
+
 #card-btn, #stop-btn {
   display: none;
 }
-#card-btn img {
+
+footer {
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+  padding: 0.4rem;
+  font-size: 0.75rem;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  flex-shrink: 0;
+}
+
+/* Card Deck Styling */
+#card-deck-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.card-deck {
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+}
+
+.card-deck:hover .deck-pile {
+  transform: translateY(-3px);
+}
+
+.deck-pile {
+  width: 4rem;
+  height: 5.5rem;
+  position: relative;
+  margin: 0 auto;
+  transition: transform 0.2s ease;
+}
+
+.deck-cards {
   width: 100%;
   height: 100%;
+  background: linear-gradient(135deg, #1e3a1f 0%, #2a4a2e 100%);
+  border: 2px solid rgba(255, 215, 0, 0.6);
+  border-radius: 8px;
+  box-shadow: 
+    0 4px 8px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(255, 215, 0, 0.3);
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  color: rgba(255, 215, 0, 0.8);
 }
 
-@media(min-width: 1200px){
-  .text-col {
-    border-right: 1px solid rgba(255, 255, 255, 0.2);
+/* Create stacked deck effect with pseudo-elements */
+.deck-cards::before,
+.deck-cards::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1e3a1f 0%, #2a4a2e 100%);
+  border: 2px solid rgba(255, 215, 0, 0.4);
+  border-radius: 8px;
+  z-index: -1;
+}
+
+.deck-cards::before {
+  top: -4px;
+  left: -2px;
+  transform: rotate(-1deg);
+}
+
+.deck-cards::after {
+  top: -8px;
+  left: -4px;
+  transform: rotate(-2deg);
+  opacity: 0.7;
+}
+
+.deck-count {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: bold;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 4px 10px;
+  border-radius: 12px;
+  white-space: nowrap;
+  min-width: 80px;
+  text-align: center;
+}
+
+.deck-label {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.85rem;
+  margin-top: 40px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.card-deck:active .deck-pile {
+  transform: scale(0.98) translateY(1px);
+}
+
+/* Flying card animation - from deck to position */
+@keyframes flyToPosition {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  30% {
+    opacity: 1;
+    transform: translate(50px, -30px) scale(0.9) rotate(5deg);
+  }
+  70% {
+    opacity: 0.8;
+    transform: translate(var(--fly-x, 200px), var(--fly-y, -100px)) scale(0.7) rotate(10deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--fly-x, 300px), var(--fly-y, -150px)) scale(0.5) rotate(15deg);
   }
 }
 
-@media only screen and (max-width: 1050px){
-  .header-text, #game-info, .button-group, #game-btn, #card-btn{
-    margin-left: 20px;
+/* Temporary flying card element */
+.flying-card {
+  position: fixed;
+  width: 3.5rem;
+  height: 5rem;
+  pointer-events: none;
+  z-index: 9999;
+  animation: flyToPosition 0.6s ease-out forwards;
+}
+
+/* Responsive deck sizing */
+@media only screen and (max-width: 1200px) {
+  .game-controls {
+    padding: 0.5rem;
   }
   
-  #clock {
-    margin-right: 20px;
-    width: auto;
+  .game-area {
+    padding: 1rem;
+    gap: 1rem;
   }
   
+  #card-deck-container {
+    top: 0.5rem;
+    right: 0.5rem;
+    transform: scale(0.85);
+  }
 }
 
-@media only screen and (max-width: 900px){
+@media only screen and (max-width: 1050px) {
   .header-text {
-    margin: 0 20px;
-  }
-
-  #game-info {
-    margin: 20px;
+    font-size: 2.5rem;
   }
   
   #clock {
-    margin: 0 20px;
+    width: 550px;
   }
-  .clockrow > div {
-    width: 3em;
-    height: 5em;
-  } 
+}
+
+@media only screen and (max-width: 900px) {
+  :root {
+    --card-width: 2.8rem;
+    --card-height: 4.2rem;
+  }
+
+  .header-text {
+    font-size: 2.2rem;
+  }
+  
+  #game-info {
+    font-size: 1rem;
+  }
+  
+  #clock {
+    width: 550px;
+  }
+  
   #c1, #c5 {
-    margin-left: 3em;
+    margin-left: 3rem;
   }
   #c2, #c4 {
-    margin-left: 7em;
+    margin-left: 7rem;
   }
   #c3 {
-    margin-left: 9.5em;
+    margin-left: 9.5rem;
   }
   #c7, #c11 {
-    margin-right: 3em;
+    margin-right: 3rem;
   }
   #c8, #c10 {
-    margin-right: 7em;
+    margin-right: 7rem;
   }
   #c9 {
-    margin-right: 9.5em;
+    margin-right: 9.5rem;
   }
 }
 
-@media only screen and (max-width: 767px){
+@media only screen and (max-width: 767px) {
+  :root {
+    --card-width: 2.2rem;
+    --card-height: 3.5rem;
+  }
+
+  .header-text {
+    font-size: 1.5rem;
+    padding: 0.75rem;
+  }
+  
+  .game-controls {
+    padding: 0.75rem 0.5rem;
+  }
+
   .button-group {
-    margin: 10px 0 0;
-    justify-content: center;
+    gap: 0.3rem;
   }
-  #game-btn, #card-btn {
-    margin: 0;
-  }
-  .card-col {
-    margin-top: 15px;
-    padding-top: 5px;
-  }
-  .text-col {
-    text-align: center;
-    padding-top: 0;
-  }
-  .header-text {
-    font-size: 30px;
-  }
-  #game-info {
-    font-size: 14px;
-    margin: 6px;
-    line-height: 1em;
-  }
-  #clock {
-    margin: 15px 0 0 0;
-  }
-  .clockrow > div {
-    width: 2em;
-    height: 3.5em;
-  }
-  #c1, #c5 {
-    margin-left: 2em;
-  }
-  #c2, #c4 {
-    margin-left: 5em;
-  }
-  #c3 {
-    margin-left: 7em;
-  }
-  #c7, #c11 {
-    margin-right: 2em;
-  }
-  #c8, #c10 {
-    margin-right: 5em;
-  }
-  #c9 {
-    margin-right: 7em;
-  }   
-}
-
-
-@media only screen and (max-width: 380px){
-  .clockrow > div {
-    width: 1.5em;
-    height: 2.5em;
-  }
-  #c1, #c5 {
-    margin-left: 1em;
-  }
-  #c2, #c4 {
-    margin-left: 3em;
-  }
-  #c3 {
-    margin-left: 4.2em;
-  }
-  #c7, #c11 {
-    margin-right: 1em;
-  }
-  #c8, #c10 {
-    margin-right: 3em;
-  }
-  #c9 {
-    margin-right: 4.2em;
-  }   
-}
-
   
+  .btn {
+    font-size: 0.8rem;
+    padding: 0.5rem 0.75rem;
+  }
+  
+  #game-info {
+    font-size: 0.8rem;
+    line-height: 1.3;
+  }
+  
+  .game-area {
+    padding: 1rem 0.5rem;
+    gap: 1rem;
+  }
+  
+  .deck-pile {
+    width: 4rem;
+    height: 6rem;
+  }
+  
+  .deck-label {
+    font-size: 0.75rem;
+  }
+  
+  #clock {
+    width: 100%;
+    max-width: 400px;
+    padding: var(--spacing-sm);
+  }
+  
+  .playing-card {
+    font-size: 1.2rem;
+  }
+  
+  .playing-card .card-value,
+  .playing-card .card-bottom {
+    font-size: 0.5rem;
+  }
+  
+  .playing-card .card-suit {
+    font-size: 1rem;
+  }
+  
+  #c1, #c5 {
+    margin-left: 2rem;
+  }
+  #c2, #c4 {
+    margin-left: 5rem;
+  }
+  #c3 {
+    margin-left: 7rem;
+  }
+  #c7, #c11 {
+    margin-right: 2rem;
+  }
+  #c8, #c10 {
+    margin-right: 5rem;
+  }
+  #c9 {
+    margin-right: 7rem;
+  }
+}
+
+@media only screen and (max-width: 380px) {
+  :root {
+    --card-width: 1.8rem;
+    --card-height: 2.8rem;
+    --spacing-lg: 0.5rem;
+  }
+
+  body {
+    padding: 0.25rem;
+  }
+
+  .header-text {
+    font-size: 1.5rem;
+  }
+
+  #game-info {
+    font-size: 0.75rem;
+  }
+
+  .btn {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .playing-card {
+    font-size: 0.9rem;
+  }
+  
+  .playing-card .card-value,
+  .playing-card .card-bottom {
+    font-size: 0.4rem;
+  }
+  
+  .playing-card .card-suit {
+    font-size: 0.75rem;
+  }
+  
+  #c1, #c5 {
+    margin-left: 1rem;
+  }
+  #c2, #c4 {
+    margin-left: 3rem;
+  }
+  #c3 {
+    margin-left: 4.2rem;
+  }
+  #c7, #c11 {
+    margin-right: 1rem;
+  }
+  #c8, #c10 {
+    margin-right: 3rem;
+  }
+  #c9 {
+    margin-right: 4.2rem;
+  }
+}
