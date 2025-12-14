@@ -65,4 +65,4 @@ start index.html # Windows
 
 ## Modernization Updates (2025)
 
-This project has been modernized from its 2020 version
+This project has been modernized from its 2020 version. For detailed information about the changes, see [MODERNIZATION_NOTES.md](MODERNIZATION_NOTES.md).
